@@ -65,4 +65,14 @@ class NewDevice extends Notification implements ShouldQueue
         return (new NexmoMessage())
             ->content(__('Your :app account logged in from a new device.', ['app' => config('app.name')]));
     }
+
+    public function toDatabase($notifiable)
+    {
+        return [
+            'email' => $notifiable->email,
+            'time' => $this->authenticationLog->login_at->toCookieString(),
+            'ip' => $this->authenticationLog->ip_address,
+            'browser' => $this->authenticationLog->user_agent,
+        ];
+    }
 }

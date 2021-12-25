@@ -65,4 +65,14 @@ class FailedLogin extends Notification implements ShouldQueue
         return (new NexmoMessage())
             ->content(__('There has been a failed login attempt to your :app account.', ['app' => config('app.name')]));
     }
+
+    public function toDatabase($notifiable)
+    {
+        return [
+            'email' => $notifiable->email,
+            'time' => $this->authenticationLog->login_at->toCookieString(),
+            'ip' => $this->authenticationLog->ip_address,
+            'browser' => $this->authenticationLog->user_agent,
+        ];
+    }
 }
