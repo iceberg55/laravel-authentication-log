@@ -2,14 +2,17 @@
 
 namespace Rappasoft\LaravelAuthenticationLog\Models;
 
+use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class AuthenticationLog extends Model
 {
+    use HasDateTimeFormatter;
+
     public $timestamps = false;
 
-    protected $table = 'authentication_log';
+    protected $table = 'admin_authentication_log';
 
     protected $fillable = [
         'ip_address',
