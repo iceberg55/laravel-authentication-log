@@ -54,7 +54,7 @@ class NewDevice extends Notification implements ShouldQueue
                     __('Location') =>
                         $this->authenticationLog->location &&
                         $this->authenticationLog->location['default'] === false ?
-                            ($this->authenticationLog->location['city'] ?? 'N/A') . ', ' . ($this->authenticationLog->location['state'] ?? 'N/A') :
+                            ($this->authenticationLog->location['city'] ?? 'N/A') . ', ' . ($this->authenticationLog->location['country_name'] ?? 'N/A') :
                             'Unknown',
                 ]);
             });
