@@ -15,8 +15,13 @@ class OtherDeviceLogoutListener
         $this->request = $request;
     }
 
-    public function handle(OtherDeviceLogout $event): void
+    public function handle($event): void
     {
+        $listener = config('authentication-log.events.other-device-logout', OtherDeviceLogout::class);
+        if (! $event instanceof $listener) {
+            return;
+        }
+
         if ($event->user) {
             $user = $event->user;
             $ip = $this->request->ip();

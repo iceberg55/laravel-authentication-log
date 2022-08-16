@@ -15,8 +15,13 @@ class FailedLoginListener
         $this->request = $request;
     }
 
-    public function handle(Failed $event): void
+    public function handle($event): void
     {
+        $listener = config('authentication-log.events.failed', Failed::class);
+        if (! $event instanceof $listener) {
+            return;
+        }
+
         if ($event->user) {
             $log = $event->user->authentications()->create([
                 'ip_address' => $ip = $this->request->ip(),
