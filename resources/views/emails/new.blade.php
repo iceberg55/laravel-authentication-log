@@ -3,7 +3,7 @@
 
 @lang('Your :app account logged in from a new device.', ['app' => config('app.name')])
 
-> **@lang('Account:')** {{ $account->email }}<br/>
+> **@lang('Email:')** {{ $account->email }}<br/>
 > **@lang('Time:')** {{ $time->toCookieString() }}<br/>
 > **@lang('IP Address:')** {{ $ipAddress }}<br/>
 > **@lang('Browser:')** {{ $browser }}<br/>

@@ -2,11 +2,14 @@
 
 namespace Rappasoft\LaravelAuthenticationLog\Models;
 
+use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class AuthenticationLog extends Model
 {
+    use HasDateTimeFormatter;
+
     public $timestamps = false;
 
     protected $table = 'authentication_log';
@@ -22,6 +25,8 @@ class AuthenticationLog extends Model
     ];
 
     protected $casts = [
+        'login_at' => 'datetime',
+        'logout_at' => 'datetime',
         'cleared_by_user' => 'boolean',
         'location' => 'array',
         'login_successful' => 'boolean',
