@@ -28,7 +28,7 @@ class LoginListener
             $ip = $this->request->ip();
 
             $ignoreIps = config('authentication-log.ignore_ips');
-            if(Arr::exists( explode(';', $ignoreIps), $ip))
+            if(in_array( $ip, explode(';', $ignoreIps)))
                 return;
 
             $user = $event->user;
