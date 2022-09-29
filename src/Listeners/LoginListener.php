@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelAuthenticationLog\Listeners;
 
 use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Rappasoft\LaravelAuthenticationLog\Notifications\NewDevice;
 
@@ -24,8 +25,13 @@ class LoginListener
         }
 
         if ($event->user) {
-            $user = $event->user;
             $ip = $this->request->ip();
+
+            $ignoreIps = config('authentication-log.ignore_ips');
+            if(Arr::exists( explode(';', $ignoreIps), $ip))
+                return;
+
+            $user = $event->user;
             $userAgent = $this->request->userAgent();
             $known = $user->authentications()->whereIpAddress($ip)->whereUserAgent($userAgent)->whereLoginSuccessful(true)->first();
             $newUser = Carbon::parse($user->{$user->getCreatedAtColumn()})->diffInMinutes(Carbon::now()) < 1;

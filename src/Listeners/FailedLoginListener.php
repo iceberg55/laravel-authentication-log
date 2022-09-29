@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelAuthenticationLog\Listeners;
 
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Rappasoft\LaravelAuthenticationLog\Notifications\FailedLogin;
 
 class FailedLoginListener
@@ -23,8 +24,14 @@ class FailedLoginListener
         }
 
         if ($event->user) {
+            $ip = $this->request->ip();
+
+            $ignoreIps = config('authentication-log.ignore_ips');
+            if(Arr::exists( explode(';', $ignoreIps), $ip))
+                return;
+
             $log = $event->user->authentications()->create([
-                'ip_address' => $ip = $this->request->ip(),
+                'ip_address' => $ip,
                 'user_agent' => $this->request->userAgent(),
                 'login_at' => now(),
                 'login_successful' => false,
