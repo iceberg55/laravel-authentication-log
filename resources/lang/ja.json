@@ -1,0 +1,15 @@
+{
+    "A failed login to your account": "アカウントへのログインに失敗した場合",
+    "Account:": "アカウント",
+    "Browser:": "ブラウザ：",
+    "Hello!": "こんにちは！",
+    "If this was you, you can ignore this alert. If you suspect any suspicious activity on your account, please change your password.": "このような場合は、このアラートを無視してください。アカウントに不審な動きがあると思われる場合は、パスワードを変更してください。",
+    "IP Address:": "IPアドレス",
+    "Location:": "場所",
+    "Regards,": "ありがとう、",
+    "There has been a failed login attempt to your :app account.": ":app]アカウントへのログインに失敗しました。",
+    "Time:": "時間だ：",
+    "Unknown City": "未知の都市",
+    "Unknown State": "国名不明",
+    "Your :app account logged in from a new device.": ":app]アカウントが新しいデバイスからログインしました。"
+}

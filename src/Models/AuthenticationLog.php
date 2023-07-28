@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelAuthenticationLog\Models;
 
-use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\Model;
+use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class AuthenticationLog extends Model
