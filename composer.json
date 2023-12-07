@@ -1,5 +1,5 @@
 {
-    "name": "dev4traders/laravel-authentication-log",
+    "name": "mikha-dev/laravel-authentication-log",
     "description": "Log user authentication details and send new device notifications.",
     "keywords": [
         "rappasoft",
